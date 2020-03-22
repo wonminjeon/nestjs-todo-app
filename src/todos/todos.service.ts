@@ -47,7 +47,7 @@ export class TodosService {
       id: uuid(),
       title,
       description,
-      status: 'OPEN',
+      status: TodoStatus.OPEN,
     };
 
     this.todos.push(todo);
