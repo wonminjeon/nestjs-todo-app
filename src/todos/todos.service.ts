@@ -11,6 +11,10 @@ export class TodosService {
     return this.todos;
   }
 
+  getTodoById(id: string): Todo {
+    return this.todos.find(todo => todo.id === id);
+  }
+
   createTodo(createTodoDto: CreateTodoDto): Todo {
     const { title, description } = createTodoDto;
     const todo: Todo = {
