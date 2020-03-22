@@ -28,7 +28,13 @@ export class TodosService {
     return todo;
   }
 
-  deleteTodoById(id: string): void {
+  deleteTodo(id: string): void {
     this.todos = this.todos.filter(todo => todo.id !== id);
+  }
+
+  updateTodoStatus(id: string): Todo {
+    const todo = this.getTodoById(id);
+    todo.completed = !todo.completed;
+    return todo;
   }
 }
