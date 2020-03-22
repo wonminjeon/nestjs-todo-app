@@ -60,8 +60,8 @@ export class TodosService {
   }
 
   updateTodoStatus(id: string, status: TodoStatus): Todo {
-    const todo = this.getTodoById(id);
-    todo.status = status;
-    return todo;
+    const found = this.getTodoById(id);
+    found.status = status;
+    return found;
   }
 }

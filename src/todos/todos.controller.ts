@@ -14,6 +14,7 @@ import { TodosService } from './todos.service';
 import { Todo, TodoStatus } from './todo.model';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { GetTodosFilterDto } from './dto/get-todos-filter.dto';
+import { TodoStatusValidationPipe } from './pipes/todo-status-validation.pipe';
 
 @Controller('todos')
 export class TodosController {
@@ -47,7 +48,7 @@ export class TodosController {
   @Patch('/:id')
   updateTodoStatus(
     @Param('id') id: string,
-    @Body('status') status: TodoStatus,
+    @Body('status', TodoStatusValidationPipe) status: TodoStatus,
   ): Todo {
     return this.todosService.updateTodoStatus(id, status);
   }
