@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Todo } from './todo.model';
+import { Todo, TodoStatus } from './todo.model';
 import * as uuid from 'uuid/v1';
 import { CreateTodoDto } from './dto/create-todo.dto';
 
@@ -21,7 +21,7 @@ export class TodosService {
       id: uuid(),
       title,
       description,
-      completed: false,
+      status: 'OPEN',
     };
 
     this.todos.push(todo);
@@ -32,9 +32,9 @@ export class TodosService {
     this.todos = this.todos.filter(todo => todo.id !== id);
   }
 
-  updateTodoStatus(id: string): Todo {
+  updateTodoStatus(id: string, status: TodoStatus): Todo {
     const todo = this.getTodoById(id);
-    todo.completed = !todo.completed;
+    todo.status = status;
     return todo;
   }
 }

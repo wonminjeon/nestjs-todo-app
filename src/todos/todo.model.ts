@@ -2,5 +2,10 @@ export interface Todo {
   id: string;
   title: string;
   description: string;
-  completed: boolean;
+  status: string;
+}
+
+export enum TodoStatus {
+  OPEN = 'OPEN',
+  DONE = 'DONE',
 }
