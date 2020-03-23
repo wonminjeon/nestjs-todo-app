@@ -14,6 +14,8 @@ import {
 import { TodosService } from './todos.service';
 import { Todo } from './todo.entity';
 import { CreateTodoDto } from './dto/create-todo.dto';
+import { TodoStatus } from './todo-status.enum';
+import { TodoStatusValidationPipe } from './pipes/todo-status-validation.pipe';
 
 @Controller('todos')
 export class TodosController {
@@ -44,11 +46,11 @@ export class TodosController {
     return this.todosService.deleteTodo(id);
   }
 
-  // @Patch('/:id')
-  // updateTodoStatus(
-  //   @Param('id') id: string,
-  //   @Body('status', TodoStatusValidationPipe) status: TodoStatus,
-  // ): Todo {
-  //   return this.todosService.updateTodoStatus(id, status);
-  // }
+  @Patch('/:id')
+  updateTodoStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('status', TodoStatusValidationPipe) status: TodoStatus,
+  ): Promise<Todo> {
+    return this.todosService.updateTodoStatus(id, status);
+  }
 }

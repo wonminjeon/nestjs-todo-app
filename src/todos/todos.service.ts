@@ -52,9 +52,10 @@ export class TodosService {
     }
   }
 
-  // updateTodoStatus(id: string, status: TodoStatus): Todo {
-  //   const found = this.getTodoById(id);
-  //   found.status = status;
-  //   return found;
-  // }
+  async updateTodoStatus(id: number, status: TodoStatus): Promise<Todo> {
+    const todo = await this.getTodoById(id);
+    todo.status = status;
+    await todo.save();
+    return todo;
+  }
 }
