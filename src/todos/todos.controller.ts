@@ -9,8 +9,10 @@ import {
   Query,
   UsePipes,
   ValidationPipe,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { TodosService } from './todos.service';
+import { Todo } from './todo.entity';
 
 @Controller('todos')
 export class TodosController {
@@ -25,10 +27,10 @@ export class TodosController {
   //   }
   // }
 
-  // @Get('/:id')
-  // getTodoById(@Param('id') id: string): Todo {
-  //   return this.todosService.getTodoById(id);
-  // }
+  @Get('/:id')
+  getTodoById(@Param('id', ParseIntPipe) id: number): Promise<Todo> {
+    return this.todosService.getTodoById(id);
+  }
 
   // @Post()
   // @UsePipes(ValidationPipe)
