@@ -16,19 +16,16 @@ import { Todo } from './todo.entity';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { TodoStatus } from './todo-status.enum';
 import { TodoStatusValidationPipe } from './pipes/todo-status-validation.pipe';
+import { GetTodosFilterDto } from './dto/get-todos-filter.dto';
 
 @Controller('todos')
 export class TodosController {
   constructor(private todosService: TodosService) {}
 
-  // @Get()
-  // getTodos(@Query(ValidationPipe) filterDto: GetTodosFilterDto): Todo[] {
-  //   if (Object.keys(filterDto).length) {
-  //     return this.todosService.getTodoWithFilters(filterDto);
-  //   } else {
-  //     return this.todosService.getAllTodos();
-  //   }
-  // }
+  @Get()
+  getTodos(@Query(ValidationPipe) filterDto: GetTodosFilterDto) {
+    return this.todosService.getTodos(filterDto);
+  }
 
   @Get('/:id')
   getTodoById(@Param('id', ParseIntPipe) id: number): Promise<Todo> {

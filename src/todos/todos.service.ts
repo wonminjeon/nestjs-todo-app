@@ -12,23 +12,8 @@ export class TodosService {
     @InjectRepository(TodoRepository)
     private todoRepository: TodoRepository,
   ) {}
-  // getAllTodos(): Todo[] {
-  //   return this.todos;
-  // }
-  // getTodoWithFilters(filterDto: GetTodosFilterDto): Todo[] {
-  //   const { status, search } = filterDto;
-  //   let todos = this.getAllTodos();
-  //   if (status) {
-  //     todos = todos.filter(todo => todo.status === status);
-  //   }
-  //   if (search) {
-  //     todos = todos.filter(
-  //       todo =>
-  //         todo.title.includes(search) || todo.description.includes(search),
-  //     );
-  //   }
-  //   return todos;
-  // }
+
+  getTodos(filterDto: GetTodosFilterDto) {}
 
   async getTodoById(id: number): Promise<Todo> {
     const found = await this.todoRepository.findOne(id);
