@@ -1,5 +1,5 @@
 import { PipeTransform, BadRequestException } from '@nestjs/common';
-import { TodoStatus } from '../todo.model';
+import { TodoStatus } from '../todo-status.enum';
 
 export class TodoStatusValidationPipe implements PipeTransform {
   readonly allowedStatuses = [TodoStatus.OPEN, TodoStatus.DONE];
