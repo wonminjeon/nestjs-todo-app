@@ -44,10 +44,14 @@ export class TodosService {
     return this.todoRepository.createTodo(createTodoDto);
   }
 
-  // deleteTodo(id: string): void {
-  //   const found = this.getTodoById(id);
-  //   this.todos = this.todos.filter(todo => todo.id !== found.id);
-  // }
+  async deleteTodo(id: number): Promise<void> {
+    const result = await this.todoRepository.delete(id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException(`Todo with ID ${id} not found.`);
+    }
+  }
+
   // updateTodoStatus(id: string, status: TodoStatus): Todo {
   //   const found = this.getTodoById(id);
   //   found.status = status;

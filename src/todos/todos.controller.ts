@@ -39,10 +39,10 @@ export class TodosController {
     return this.todosService.createTodo(createTodoDto);
   }
 
-  // @Delete('/:id')
-  // deleteTodo(@Param('id') id: string): void {
-  //   this.todosService.deleteTodo(id);
-  // }
+  @Delete('/:id')
+  deleteTodo(@Param('id', ParseIntPipe) id: number): Promise<void> {
+    return this.todosService.deleteTodo(id);
+  }
 
   // @Patch('/:id')
   // updateTodoStatus(
