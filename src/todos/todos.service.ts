@@ -4,6 +4,7 @@ import { GetTodosFilterDto } from './dto/get-todos-filter.dto';
 import { TodoRepository } from './todo.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Todo } from './todo.entity';
+import { TodoStatus } from './todo-status.enum';
 
 @Injectable()
 export class TodosService {
@@ -39,17 +40,10 @@ export class TodosService {
     return found;
   }
 
-  // createTodo(createTodoDto: CreateTodoDto): Todo {
-  //   const { title, description } = createTodoDto;
-  //   const todo: Todo = {
-  //     id: uuid(),
-  //     title,
-  //     description,
-  //     status: TodoStatus.OPEN,
-  //   };
-  //   this.todos.push(todo);
-  //   return todo;
-  // }
+  async createTodo(createTodoDto: CreateTodoDto): Promise<Todo> {
+    return this.todoRepository.createTodo(createTodoDto);
+  }
+
   // deleteTodo(id: string): void {
   //   const found = this.getTodoById(id);
   //   this.todos = this.todos.filter(todo => todo.id !== found.id);

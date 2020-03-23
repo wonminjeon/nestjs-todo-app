@@ -13,6 +13,7 @@ import {
 } from '@nestjs/common';
 import { TodosService } from './todos.service';
 import { Todo } from './todo.entity';
+import { CreateTodoDto } from './dto/create-todo.dto';
 
 @Controller('todos')
 export class TodosController {
@@ -32,11 +33,11 @@ export class TodosController {
     return this.todosService.getTodoById(id);
   }
 
-  // @Post()
-  // @UsePipes(ValidationPipe)
-  // createTask(@Body() createTodoDto: CreateTodoDto): Todo {
-  //   return this.todosService.createTodo(createTodoDto);
-  // }
+  @Post()
+  @UsePipes(ValidationPipe)
+  createTask(@Body() createTodoDto: CreateTodoDto): Promise<Todo> {
+    return this.todosService.createTodo(createTodoDto);
+  }
 
   // @Delete('/:id')
   // deleteTodo(@Param('id') id: string): void {
