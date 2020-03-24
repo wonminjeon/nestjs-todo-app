@@ -10,6 +10,7 @@ import {
   UsePipes,
   ValidationPipe,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { TodosService } from './todos.service';
 import { Todo } from './todo.entity';
@@ -17,8 +18,10 @@ import { CreateTodoDto } from './dto/create-todo.dto';
 import { TodoStatus } from './todo-status.enum';
 import { TodoStatusValidationPipe } from './pipes/todo-status-validation.pipe';
 import { GetTodosFilterDto } from './dto/get-todos-filter.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('todos')
+@UseGuards(AuthGuard())
 export class TodosController {
   constructor(private todosService: TodosService) {}
 
