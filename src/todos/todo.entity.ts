@@ -3,7 +3,6 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  ManyToMany,
   ManyToOne,
 } from 'typeorm';
 import { TodoStatus } from './todo-status.enum';
