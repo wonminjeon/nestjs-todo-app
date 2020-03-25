@@ -28,8 +28,11 @@ export class TodosController {
   constructor(private todosService: TodosService) {}
 
   @Get()
-  getTodos(@Query(ValidationPipe) filterDto: GetTodosFilterDto) {
-    return this.todosService.getTodos(filterDto);
+  getTodos(
+    @Query(ValidationPipe) filterDto: GetTodosFilterDto,
+    @GetUser() user: User,
+  ) {
+    return this.todosService.getTodos(filterDto, user);
   }
 
   @Get('/:id')
