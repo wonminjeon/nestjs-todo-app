@@ -42,10 +42,14 @@ export class TodosService {
     }
   }
 
-  // async updateTodoStatus(id: number, status: TodoStatus): Promise<Todo> {
-  //   const todo = await this.getTodoById(id);
-  //   todo.status = status;
-  //   await todo.save();
-  //   return todo;
-  // }
+  async updateTodoStatus(
+    id: number,
+    status: TodoStatus,
+    user: User,
+  ): Promise<Todo> {
+    const todo = await this.getTodoById(id, user);
+    todo.status = status;
+    await todo.save();
+    return todo;
+  }
 }

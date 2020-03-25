@@ -57,11 +57,12 @@ export class TodosController {
     return this.todosService.deleteTodo(id);
   }
 
-  // @Patch('/:id')
-  // updateTodoStatus(
-  //   @Param('id', ParseIntPipe) id: number,
-  //   @Body('status', TodoStatusValidationPipe) status: TodoStatus,
-  // ): Promise<Todo> {
-  //   return this.todosService.updateTodoStatus(id, status);
-  // }
+  @Patch('/:id')
+  updateTodoStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('status', TodoStatusValidationPipe) status: TodoStatus,
+    @GetUser() user: User,
+  ): Promise<Todo> {
+    return this.todosService.updateTodoStatus(id, status, user);
+  }
 }
