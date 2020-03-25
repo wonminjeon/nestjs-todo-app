@@ -36,8 +36,11 @@ export class TodosController {
   }
 
   @Get('/:id')
-  getTodoById(@Param('id', ParseIntPipe) id: number): Promise<Todo> {
-    return this.todosService.getTodoById(id);
+  getTodoById(
+    @Param('id', ParseIntPipe) id: number,
+    @GetUser() user: User,
+  ): Promise<Todo> {
+    return this.todosService.getTodoById(id, user);
   }
 
   @Post()
@@ -54,11 +57,11 @@ export class TodosController {
     return this.todosService.deleteTodo(id);
   }
 
-  @Patch('/:id')
-  updateTodoStatus(
-    @Param('id', ParseIntPipe) id: number,
-    @Body('status', TodoStatusValidationPipe) status: TodoStatus,
-  ): Promise<Todo> {
-    return this.todosService.updateTodoStatus(id, status);
-  }
+  // @Patch('/:id')
+  // updateTodoStatus(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Body('status', TodoStatusValidationPipe) status: TodoStatus,
+  // ): Promise<Todo> {
+  //   return this.todosService.updateTodoStatus(id, status);
+  // }
 }

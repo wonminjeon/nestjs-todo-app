@@ -18,8 +18,10 @@ export class TodosService {
     return this.todoRepository.getTodos(filterDto, user);
   }
 
-  async getTodoById(id: number): Promise<Todo> {
-    const found = await this.todoRepository.findOne(id);
+  async getTodoById(id: number, user: User): Promise<Todo> {
+    const found = await this.todoRepository.findOne({
+      where: { id, userId: user.id },
+    });
 
     if (!found) {
       throw new NotFoundException(`Task with ID ${id} not found.`);
@@ -40,10 +42,10 @@ export class TodosService {
     }
   }
 
-  async updateTodoStatus(id: number, status: TodoStatus): Promise<Todo> {
-    const todo = await this.getTodoById(id);
-    todo.status = status;
-    await todo.save();
-    return todo;
-  }
+  // async updateTodoStatus(id: number, status: TodoStatus): Promise<Todo> {
+  //   const todo = await this.getTodoById(id);
+  //   todo.status = status;
+  //   await todo.save();
+  //   return todo;
+  // }
 }
